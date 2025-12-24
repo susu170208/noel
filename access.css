@@ -1,0 +1,394 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100vh;
+  background: linear-gradient(135deg, #0a1a2f 0%, #1a3a5f 50%, #0a1a2f 100%);
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TUYẾT RƠI LIÊN TỤC */
+.snowflakes {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.snow {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.45);
+  top: -30px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0.1;
+  }
+}
+
+/* Xóa hoàn toàn tuyết cũ */
+.snowflake, .snowflake * { display: none !important; }
+
+/* Giao diện chính */
+.access-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  z-index: 4;
+}
+
+.access-title {
+  font-size: 2.5rem;
+  color: #ffdd00;
+  text-shadow: 0 0 20px #ffaa00;
+  margin-bottom: 10px;
+  font-family: 'Brush Script MT', cursive;
+}
+
+.access-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.birthday-form { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+.date-inputs { display: flex; gap: 10px; justify-content: center; align-items: center; }
+
+.date-input {
+  padding: 15px;
+  font-size: 1.1rem;
+  border: 2px solid #ffdd00;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a1a2f;
+  text-align: center;
+  width: 80px;
+  transition: all 0.3s ease;
+  font-family: monospace;
+}
+
+.date-input:focus {
+  outline: none;
+  box-shadow: 0 0 20px #ffdd00;
+  transform: scale(1.05);
+}
+
+.date-separator { color: #ffdd00; font-size: 1.5rem; font-weight: bold; margin: 0 5px; }
+.year-input { width: 100px; }
+
+.submit-btn {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  background: linear-gradient(45deg, #ffdd00, #ff6b6b);
+  border: none;
+  border-radius: 50px;
+  color: #0a1a2f;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px #ffdd00; }
+.submit-btn::before { content: "🎄"; position: absolute; left: -20px; transition: all 0.3s ease; }
+.submit-btn::after { content: "🎅"; position: absolute; right: -20px; transition: all 0.3s ease; }
+.submit-btn:hover::before { left: 10px; }
+.submit-btn:hover::after { right: 10px; }
+
+.error-message {
+  color: #ff6b6b;
+  margin-top: 15px;
+  font-size: 1rem;
+  display: none;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.magic-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+  z-index: -1;
+}
+
+.twinkling-stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.twinkling-stars::before {
+  content: '';
+  position: absolute;
+  width: 100%; height: 100%;
+  background-image: radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+                    radial-gradient(1px 1px at 90px 40px, #ddd, transparent),
+                    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+                    radial-gradient(2px 2px at 160px 30px, #eee, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@media (max-width: 768px) {
+  .access-container { padding: 30px 20px; }
+  .access-title { font-size: 2rem; }
+  .access-subtitle { font-size: 1rem; }
+  .date-input { width: 70px; padding: 12px; }
+  .year-input { width: 90px; }
+}
+
+/* ẢNH NGƯỜI TUYẾT */
+.snowman-img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+@keyframes floatSnowman {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* CÂY THÔNG NOEL */
+.christmas-tree {
+  position: fixed;
+  height: auto;
+  z-index: 2;
+  transform-origin: bottom center;
+}
+
+/* hopqua */
+.tree-left {
+  bottom: 50px;
+  left: 1100px;
+  width: 200px;
+  z-index: 2;
+}
+
+/* Cây thông bên phải */
+.tree-right {
+  bottom: 30px;
+  right: 10px;
+  width: 450px;
+  z-index: 1;
+}
+
+/* ÔNG GIÀ NOEL Ở GÓC DƯỚI - ĐÃ PHÓNG TO 20cm VÀ LẬT ẢNH */
+.santa-bottom {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px; /* Khoảng 20cm trên màn hình */
+  height: auto;
+  z-index: 5;
+  animation: santaFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.3));
+  transform: scaleX(-1); /* Lật ảnh theo chiều ngang */
+}
+
+@keyframes santaFloat {
+  0%, 100% { transform: scaleX(-1) translateY(0); }
+  50% { transform: scaleX(-1) translateY(-10px); }
+}
+
+@media (max-width: 1200px) {
+  .tree-left {
+    width: 200px;
+    left: 800px;
+  }
+  .tree-right {
+    width: 300px;
+  }
+  .santa-bottom {
+    width: 250px; /* Giảm kích thước trên màn hình vừa */
+  }
+}
+
+@media (max-width: 768px) {
+  .tree-left {
+    width: 120px;
+    left: 300px;
+  }
+  .tree-right {
+    width: 180px;
+  }
+  .tree-left, .tree-right {
+    bottom: 10px;
+  }
+  
+  /* Responsive cho ông già Noel */
+  .santa-bottom {
+    width: 180px; /* Giảm kích thước trên mobile */
+    bottom: 15px;
+    left: 15px;
+  }
+}
+
+/* =============================
+   BONG BÓNG SUY NGHĨ (ĐÃ DI CHUYỂN SANG PHẢI 1cm)
+   ============================= */
+.speech-bubble-container {
+  position: fixed;
+  top: 350px; /* Vị trí từ trên xuống */
+  right: 80px; /* Đã di chuyển sang phải 1cm (từ 90px xuống 80px) */
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.speech-bubble {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 15px 20px;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: bubbleFloat 4s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+/* Đuôi bong bóng - Ở GÓC TRÁI */
+.bubble-tail {
+  position: absolute;
+  bottom: -15px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid rgba(255, 255, 255, 0.95);
+}
+
+/* Văn bản trong bong bóng */
+.bubble-text {
+  color: #0a1a2f;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Animation cho bong bóng */
+@keyframes bubbleFloat {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+/* Hiệu ứng bong bóng nhấp nháy nhẹ */
+@keyframes bubbleGlow {
+  0%, 100% { 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  50% { 
+    box-shadow: 0 8px 25px rgba(255, 221, 0, 0.3);
+  }
+}
+
+.speech-bubble {
+  animation: bubbleFloat 4s ease-in-out infinite, bubbleGlow 3s ease-in-out infinite;
+}
+
+/* Hiệu ứng xuất hiện từ từ */
+@keyframes fadeInBubble {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.speech-bubble {
+  animation: fadeInBubble 1s ease-out, bubbleFloat 4s ease-in-out infinite, bubbleGlow 3s ease-in-out infinite;
+}
+
+/* Responsive cho bong bóng */
+@media (max-width: 1200px) {
+  .speech-bubble-container {
+    right: 70px; /* Đã điều chỉnh tương ứng (từ 80px xuống 70px) */
+    top: 320px; /* Vị trí từ trên xuống */
+  }
+  .speech-bubble {
+    min-width: 220px;
+    max-width: 250px;
+    padding: 12px 16px;
+  }
+  .bubble-text {
+    font-size: 1rem;
+  }
+  .bubble-tail {
+    left: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .speech-bubble-container {
+    right: 60px; /* Đã điều chỉnh tương ứng (từ 70px xuống 60px) */
+    top: 300px; /* Vị trí từ trên xuống */
+  }
+  .speech-bubble {
+    min-width: 180px;
+    max-width: 200px;
+    padding: 10px 14px;
+  }
+  .bubble-text {
+    font-size: 0.9rem;
+  }
+  .bubble-tail {
+    left: 20px;
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Required - Merry Christmas</title>
+  <link rel="stylesheet" href="access.css">
+</head>
+<body>
+
+  <div class="magic-background"></div>
+  <div class="twinkling-stars"></div>
+
+  <div class="snowflakes" id="snowflakesContainer"></div>
+
+  <!-- Cây thông Noel bên trái -->
+  <img src="hopqua.png" class="christmas-tree tree-left" alt="Christmas Tree">
+
+  <!-- Cây thông Noel bên phải -->
+  <img src="caythong.png" class="christmas-tree tree-right" alt="Christmas Tree">
+
+  <!-- Ông già Noel ở góc dưới (đã lật ảnh) -->
+  <img src="onggianoel.png" class="santa-bottom" alt="Santa Claus">
+
+  <!-- CHỈ CÒN BONG BÓNG SUY NGHĨ (BÊN PHẢI 30cm) -->
+  <div class="speech-bubble-container">
+    <div class="speech-bubble">
+      <div class="bubble-text">helu cái bạn xinh gái trước màn hình nhé :>>></div>
+      <div class="bubble-tail"></div>
+    </div>
+  </div>
+
+  <div class="access-container">
+    <img src="nguoituyet.png" class="snowman-img" alt="Snowman">
+    <h1 class="access-title">Merry Christmas</h1>
+    <p class="access-subtitle">Nhập ngày sinh để tiếp tục</p>
+
+    <form class="birthday-form" id="birthdayForm">
+      <div class="date-inputs">
+        <input type="text" class="date-input" id="dayInput" maxlength="2" placeholder="DD">
+        <span class="date-separator">/</span>
+        <input type="text" class="date-input" id="monthInput" maxlength="2" placeholder="MM">
+        <span class="date-separator">/</span>
+        <input type="text" class="date-input year-input" id="yearInput" maxlength="4" placeholder="YYYY">
+      </div>
+      <button type="submit" class="submit-btn">tiếp tục</button>
+    </form>
+
+    <div class="error-message" id="errorMessage">
+      nhập ngày sinh của mình á mom =))))  
+    </div>
+  </div>
+
+  <script src="access.js"></script>
+</body>
+</html>
